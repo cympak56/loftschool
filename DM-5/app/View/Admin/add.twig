@@ -1,0 +1,23 @@
+<form enctype="multipart/form-data" action="/admin/add" method="post">
+    Имя:<br>
+    <input name="name" type="text"/><br>
+    Email:<br>
+    <input name="email" type="text"/><br>
+    Роль:<br>
+    <select name="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select><br>
+    Пароль:<br>
+    <input type="password" name="password"> <br>
+    Повторите пароль:<br>
+    <input type="password" name="password_repeat"> <br>
+    Аватар:<br>
+    <input name="image" type="file"/><br><br>
+
+    <input type="submit" value="Send">
+</form>
+
+{% if error %}
+    <span style="color: red">{{ error }}</span>
+{% endif %}

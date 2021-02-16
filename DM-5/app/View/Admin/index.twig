@@ -1,0 +1,18 @@
+<table cellspacing="2" border="1" cellpadding="5" width="600">
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Емайл</th>
+        <th>Роль</th>
+        <th><a href="/admin/add">Add User</a></th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.user_id }}</td>
+        <td><a href="/admin/edit?id={{ user.user_id }}">{{ user.name }}</a></td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td><a href="/admin/delete?id={{ user.user_id }}">Удалить</td>
+    </tr>
+    {% endfor %}
+</table>

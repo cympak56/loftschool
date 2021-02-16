@@ -1,0 +1,57 @@
+Вы вошли как {{ user.getName() }}
+
+<form action="/user/logout">
+    <input type="submit" value="Выйти">
+</form>
+
+
+<br>
+<br>
+<form enctype="multipart/form-data" action="/blog" method="post">
+    Сообщеие:<br>
+    <textarea name="message" style="width: 250px; height: 100px;"></textarea><br>
+    Прикрепить картинку:<br>
+    <input name="image" type="file"/><br>
+    <input type="submit" value="Send">
+</form>
+
+<br>
+<br>
+{% for post in posts %}
+    <div class="post">
+        <span class="user">Сообщеие от <a href="/blog/view?id={{ post['user_id'] }}"><b>{{ post['name'] }}</b></a> отправлено {{ post['created_at'] }}</span>
+        <div class="message">{{ post['message'] }}</div>
+
+        {% if user.fileExists(post['image']) %}
+            <img src="/blog/image?id={{ post['message_id'] }}"></img>
+        {% endif %}
+
+
+        {% if user.admin(user.getId()) %}
+            <br><a href="/blog/delete?id={{ post['message_id'] }}" class="delete">удалить</a>
+        {% endif %}
+    </div>
+{% endfor %}
+
+<style>
+    .post {
+        border: 1px solid grey;
+        margin-top: 10px;
+        padding: 5px;
+        width: 250px;
+    }
+
+    .user {
+        color: grey;
+        font-size: 11px;
+    }
+
+    .message {
+        margin-top: 5px;
+        padding-left: 5px;
+    }
+
+    .delete {
+        color: red;
+    }
+</style>
